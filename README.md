@@ -6,7 +6,7 @@
 
 프로젝트의 최종 목표는 아래와 같습니다.
 
-**1. BPE를 활용하여 단순히 opcode frequency 또는 임베딩을 한 기존 기법보다 더 발전된 탐지 모델 제작*
+**1. BPE를 활용하여 단순히 opcode frequency 또는 임베딩을 한 기존 기법보다 더 발전된 탐지 모델 제작**
 
 **2. OPCODE 의 순서를 반영하지 않고 측정한 기존 악성코드 탐지의 정확도와 자체적으로 튜닝한 BPE를 적용하여 정확도를 비교(Sequence를 활용하는 추가적인 모델 활용 예정 ex) seq2seq, attention, LSTM, transformer 등)**
 
