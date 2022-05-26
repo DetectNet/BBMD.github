@@ -1,4 +1,4 @@
-# OSMD 악성코드 탐지 프로젝트
+# :jack_o_lantern: OSMD 악성코드 탐지 프로젝트
 *NLP Term Project: Opcode Sequence Based Malware Detection Model*
 > "BPE 알고리즘을 이용하여 opcode의 순서를 반영하면 악성코드 탐색 효율을 높일수 있지 않을까?"
 
@@ -10,7 +10,7 @@
 
 **2. 기존 악성 코드 탐지 기법 중, 전처리 과정에서의 새로운 방법론 제안**
 
-## 🍎기대 효과
+## :apple: 기대 효과
 **1. 기존 분석모델의 효율성 증대**
 > 기존에는 Opcode 리스트가 굉장히 길다는 이유요 opcode의 순서를 반영하지 않았습니다. NLP 분야의 BPE Tokenizer 알고리즘을 통해 순서를 반영하여 기존 모델의 정확도를 높히는 결과를 기대합니다
  
