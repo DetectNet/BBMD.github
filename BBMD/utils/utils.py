@@ -29,7 +29,7 @@ def get_main_code_section(sections, base_of_code):
             return None
 
 # Extract pefile all opcodes
-def ExtractPefile12000Opcodes(opcodes, exe):
+def ExtractPefileOpcodes(opcodes, exe):
     #Opcode LIst
     opcodeList = []
     #get main code section
