@@ -4,18 +4,18 @@
 
 * BPE2000 word2vec + XGBoost Classifier.ipynb
 
--> BPE Token sequence 정보를 기반으로 각 BPE Token들에 대해 word2vec 임베딩 값이 주어지도록 학습을 진행하고, 학습시킨 word2vec 모델을 기반으로 Sequence를 임베딩하여 XGBClassifier 기반 분류모델을 통해 악성코드를 탐지하도록 모델을 학습시키는 코드
+> BPE Token sequence 정보를 기반으로 각 BPE Token들에 대해 word2vec 임베딩 값이 주어지도록 학습을 진행하고, 학습시킨 word2vec 모델을 기반으로 Sequence를 임베딩하여 XGBClassifier 기반 분류모델을 통해 악성코드를 탐지하도록 모델을 학습시키는 코드
 
--> 이 코드를 통해 BPE Token을 word2vec 임베딩 값을 제공하는 BPEw2v2000 모델과, 임베딩 값을 기반으로 예측하는 탐지모델인 XGB_BPE2000_Word2vecClassifier.model이 생성됩니다.
+>> 이 코드를 통해 BPE Token을 word2vec 임베딩 값을 제공하는 BPEw2v2000 모델과, 임베딩 값을 기반으로 예측하는 탐지모델인 XGB_BPE2000_Word2vecClassifier.model이 생성됩니다.
 
 * BPEw2v2000
 
--> BPE Token sequence를 통해 학습된 BPE Token에 대한 word2vec 모델입니다.
+> BPE Token sequence를 통해 학습된 BPE Token에 대한 word2vec 모델입니다.
 
 * XGB_BPE2000_Word2vecClassifier.model
 
--> word2vec 임베딩 값을 기반으로 악성코드를 탐지하는 모델입니다.
+> word2vec 임베딩 값을 기반으로 악성코드를 탐지하는 모델입니다.
 
 * test.ipynb
 
--> 위의 두 모델을 활용해서 악성코드 샘플 파일 및 양성코드 샘플파일을 탐지하는 예시를 보여주는 파일입니다.
+> 위의 두 모델을 활용해서 악성코드 샘플 파일 및 양성코드 샘플파일을 탐지하는 예시를 보여주는 파일입니다.
