@@ -35,11 +35,11 @@
 
 |모델|Prev.Model|BBMD|
 |:---:|:---:|:---:|
-|Opcode Sequence| 0.98526| .|
+|Opcode Sequence| 0.98526| 0.99124|
 |Word2 vec + XGBoost Classifier|0.99217|0.99401|
 
 
-`👉 각 모델의 동작 과정은 디렉토리에 있는 readme file에 기재 해 두었습니다`
+`👉 각 모델의 파일 설명은 디렉토리에 있는 read file에 기재 해 두었습니다, 동작 과정은 ipynb의 text로 설명하였습니다`
 
 
 ## 🔎 추가 진행 계획 및 개선 사항
