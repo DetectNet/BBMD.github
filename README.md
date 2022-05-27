@@ -34,7 +34,7 @@
 ![KakaoTalk_20220527_170538757](https://user-images.githubusercontent.com/101659578/170662635-93601d23-33ab-45d5-b234-be2d22ff17ed.png)
 
 결과 테이블
-![그림1](https://user-images.githubusercontent.com/101659578/170675642-b1baf705-7ee5-4d81-8dd2-6e830ae0dd6b.png)
+![3](https://user-images.githubusercontent.com/101659578/170676368-17e29021-25bd-4827-8260-0b2caf81af96.png)
 
 
 
