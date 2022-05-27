@@ -32,7 +32,7 @@
 각 모델의 디렉토리에 있는 readme file에 기재해 두었습니다
 
 ## 결과
-
+<img width="{100%}" src="{https://user-images.githubusercontent.com/101659578/170662635-93601d23-33ab-45d5-b234-be2d22ff17ed.png}"/>
 
 ## 🔎 추가 진행 계획
 * _OPCODE_ 중 _nop_ 가 아무 의미가 없는 버퍼형식으로 작동하는것을 발견하였습니다. _nop_ 를 제거하는 방식으로 성능을 높일 수 있다 판단하여, 프로젝트를 발전시켜볼 계획입니다.
