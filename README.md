@@ -1,5 +1,5 @@
 # :jack_o_lantern: BBMD 악성코드 탐지 프로젝트
-*NLP Term Project: BPE BASED MALWARE DETECTECTION*
+*NLP Term Project: BPE BASED MALWARE DETECTECTION(BBMD)*
 > "BPE 알고리즘을 이용하여 opcode의 순서를 반영하면 악성코드 탐색 효율을 높일수 있지 않을까?"
 
 라는 궁금증에서 시작한 프로젝트입니다. 기존 악성코드 분석 방법에서는 추출된 opcode들의 순서를 신경 쓰지 않았다는 특징을 발견하였습니다.
