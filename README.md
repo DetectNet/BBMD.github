@@ -33,10 +33,10 @@
 ## 🌟 결과
 ![KakaoTalk_20220527_170538757](https://user-images.githubusercontent.com/101659578/170662635-93601d23-33ab-45d5-b234-be2d22ff17ed.png)
 
-|모델|Prev.Model|BBMD|
-|:---:|:---:|:---:|
-|Opcode Sequence| 0.98526| 0.99124|
-|Word2 vec + XGBoost Classifier|0.99217|0.99401|
+| Prev.Model||BBMD||
+|:--------:|:------:|:--------:|:--------:|
+| OPCODE Frequency| Word2vec|Sequence based|word2Vec|
+
 
 
 `👉 각 모델의 파일 설명은 디렉토리에 있는 read file에 기재 해 두었습니다, 동작 과정은 ipynb의 text로 설명하였습니다`
