@@ -33,9 +33,6 @@
 ## 🌟 결과
 ![KakaoTalk_20220527_170538757](https://user-images.githubusercontent.com/101659578/170662635-93601d23-33ab-45d5-b234-be2d22ff17ed.png)
 
-| Prev.Model||BBMD||
-|:--------:|:------:|:--------:|:--------:|
-| OPCODE Frequency| Word2vec|Sequence based|word2Vec|
 
 
 
