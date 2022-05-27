@@ -1,7 +1,7 @@
 **utils.py**
   > 프로젝트 관련 함수 다수 포함 함수
 
-**test.ipynb **
+**test.ipynb**
 > utils.py 내 함수들이 어떤 식으로 작동되는지와 잘 작동되는지 여부를 보여주는 함수
 
 **opcodesList.txt**
