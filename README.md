@@ -71,7 +71,7 @@
 ```
 ### prev.Models/XGBClassifier_based_on_opcode_frequency/모델 사용법
 * 디렉토리 내부에 있는 test.ipynb 파일을 쥬피터 노트북을 통해 읽으시면 쉽게 이해하실 수 있습니다.
-'''python
+```python
 >>> # 필요한 패키지인 pefile과 capstone이 설치된 환경에서 작동됩니다.
 >>> # utils.py가 있는 파일로 디렉토리를 이동하시고 사용하여야 합니다.
 >>> # 필요한 패키지 import
@@ -98,7 +98,7 @@
 >>> pickleName = 'MalwareSample.p' 
 >>> MalwareDetectionFunctionUsingPickle(clf, pickleName)
 1
-'''
+```
 
 
 ## 🌟 결과
