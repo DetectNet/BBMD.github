@@ -27,8 +27,46 @@
 * Google Colab
 * Python Version : 3.7.13
 
+## 🗃️Dataset
+* DikeDataset: https://github.com/iosifache/DikeDataset
 
+## How to use
+* 사용법은 각 디렉토리에 있는 test.ipynb를 보시면 쉽게 이해하실 수 있습니다.
 
+### utils.py 파일 사용법
+* BBMD 안에 있는 utils 디렉토리에 있는 utils.py를 사용하는 방법입니다.
+* utils 디렉토리 내부에 있는 test.ipynb 파일을 쥬피터 노트북을 통해 읽으시면 쉽게 이해하실 수 있습니다.
+```python
+>>> # utils.py가 있는 파일로 디렉토리를 이동하시고 사용하여야 합니다.
+>>> from utils import *
+>>> # opcodeList가 있는 파일과 BPE Token vocab 파일을 로드를 해줍니다.
+>>> with open('opcodesList.txt', 'rb') as lf:
+>>>     opcodes = pickle.load(lf)
+>>> opcodes2 = []
+>>> for i in range(len(opcodes)):
+>>>    opcodes2.append([opcodes[i]])
+>>> with open('2000vocab.p', 'rb') as file:
+>>>    vocab = pickle.load(file)
+>>> vocab = vocab + opcodes2
+>>> # utils 내 함수 동작 방법들입니다.
+>>> # 특징이 추출될 pefile 이름 및 불러오기
+>>> fileName = '3f3fe9ecad7f30fc80cdfb678d7ca27a30d0575a73818746e98be9170d3be348.exe'
+>>> try:
+>>>    exe = pefile.PE(fileName)
+>>> except:
+>>>    print('Error File')
+>>> # ExtractPefileOpcodes: pefile 내부의 opcode를 전체 추출(순서대로)
+>>> sampleOpcodeList = ExtractPefile12000Opcodes(opcodes, exe)
+>>> print(sampleOpcodeList[:10])
+['add', 'add', 'add', 'add', 'dec', 'mov', 'xor', 'dec', 'lea', 'inc']
+>>> # Tokenizer: opcode sequence list를 BPE token list로 변환
+>>> sampleTokens = Tokenizer(vocab, sampleOpcodeList)
+>>> print(sampleTokens[:10])
+['addaddaddadd', 'decmovxor', 'decleaincmov', 'inc', 'movdec', 'cmpinc', 'movincinc', 'testjs', 'incmov', 'dectestje']
+>>> # TokenIdMapping: BPE Token list를 BPE Token Id로 변환
+>>> sampleTokenIdList = TokenIdMapping(vocab, sampleTokens)
+[2110, 1336, 606, 86, 2045, 1837, 709, 1499, 2059, 1851]
+```
 
 ## 🌟 결과
 **LSTM+CNN Model Input Max Length별 모델 성능 평가**
