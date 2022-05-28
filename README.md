@@ -176,6 +176,92 @@
 1
 ```
 
+### BBMD/DeepLearningModel_based_on_BPETokenSequence/모델 사용법
+* 디렉토리 내부에 있는 test.ipynb 파일을 쥬피터 노트북을 통해 읽으시면 쉽게 이해하실 수 있습니다.
+* 해당 모델은 github에 한번에 올릴 수 있는 용량인 25MB를 초과해서 분할 압축되었습니다.(분할압축된 파일을 일괄적으로 압축해제 해주셔야 합니다.)
+```python
+>>> # 필요한 패키지인 pefile과 capstone이 설치된 환경에서 작동됩니다.
+>>> # utils.py가 있는 파일로 디렉토리를 이동하시고 사용하여야 합니다.
+>>> # 필요한 패키지 import
+>>> from utils import *
+>>> import keras
+>>> from keras.models import Sequential
+>>> from keras.layers import Dense, LSTM, Embedding
+>>> from keras.layers import Conv1D, MaxPooling1D, Dropout, Activation
+>>> import tensorflow.keras.backend as K
+>>> from tensorflow.keras.callbacks import ModelCheckpoint
+>>> from keras.preprocessing import sequence
+>>> from keras.utils import np_utils
+>>> from keras.utils.np_utils import to_categorical
+>>> import tensorflow as tf
+>>> # opcodeList가 있는 파일과 BPE Token vocab 파일을 로드를 해줍니다.
+>>> with open('opcodesList.txt', 'rb') as lf:
+>>>     opcodes = pickle.load(lf)
+>>> print(opcodes[:10])
+['aaa', 'aad', 'aam', 'aas', 'adc', 'add', 'and', 'call', 'cbw', 'clc']
+>>> opcodes2 = []
+>>> for i in range(len(opcodes)):
+>>>    opcodes2.append([opcodes[i]])
+>>> with open('2000vocab.p', 'rb') as file:
+>>>    vocab = pickle.load(file)
+>>> vocab = vocab + opcodes2
+>>> print(vocab[:10])
+[['add', 'add'], ['mov', 'mov'], ['add', 'add', 'add', 'add'], ['push', 'push'], ['add', 'add', 'add', 'add', 'add', 'add', 'add', 'add'], ['push', 'call'], ['push', 'mov'], ['dec', 'mov'], ['mov', 'mov', 'mov', 'mov'], ['pop', 'pop']]
+>>> # 모델 생성
+>>> model= Sequential()
+>>> model.add(Embedding(len(vocab), 3000))
+>>> model.add(Dropout(0.5))
+>>> model.add(Conv1D(64, 5, padding = 'valid', activation = 'relu', strides = 1))
+>>> model.add(MaxPooling1D(pool_size=4))
+>>> model.add(LSTM(55))
+>>> model.add(Dense(48, activation='relu'))
+>>> model.add(Dense(2))
+>>> model.add(Activation('softmax'))
+>>> model.summary()
+Model: "sequential_1"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ embedding_1 (Embedding)     (None, None, 3000)        6336000   
+                                                                 
+ dropout_1 (Dropout)         (None, None, 3000)        0         
+                                                                 
+ conv1d_1 (Conv1D)           (None, None, 64)          960064    
+                                                                 
+ max_pooling1d_1 (MaxPooling  (None, None, 64)         0         
+ 1D)                                                             
+                                                                 
+ lstm_1 (LSTM)               (None, 55)                26400     
+                                                                 
+ dense_2 (Dense)             (None, 48)                2688      
+                                                                 
+ dense_3 (Dense)             (None, 2)                 98        
+                                                                 
+ activation_1 (Activation)   (None, 2)                 0         
+                                                                 
+=================================================================
+Total params: 7,325,250
+Trainable params: 7,325,250
+Non-trainable params: 0
+_________________________________________________________________
+>>> # 모델 가중치 로드
+>>> # 모델을 저장할 경로를 설정해주시면 됩니다.
+>>> filename = 'BPESequenceBasedLSTMCNNMalwareDetectionModel.h5'
+>>> model.load_weights(filename)
+>>> # test.ipynb 파일 내부에 있는 MalwareDetectionFunction 함수와 MalwareDetectionFunctionUsingPickle 함수를 만들어주세요(길어서 여기서는 생략합니다.)
+>>> # 양성 파일 테스트(0으로 출력될 경우 양성)
+>>> fileName = '3f3fe9ecad7f30fc80cdfb678d7ca27a30d0575a73818746e98be9170d3be348.exe'
+>>> MalwareDetectionFunction(clf, fileName)
+0
+>>> # 악성코드 파일 테스트(1로 출력될 경우 악성)
+>>> # 악성코드 파일을 직접 Google Drive 및 GitHub에 올릴 수 없기 때문에 pickle로 먼저 opcodeSequence를 추출하여 해당 파일을 바탕으로 악성코드를 탐지하는 함수를 제작하였습니다.
+>>> pickleName = 'MalwareSample.p' 
+>>> MalwareDetectionFunctionUsingPickle(clf, pickleName)
+1
+```
+
+
+
 ## 🌟 결과
 **LSTM+CNN Model Input Max Length별 모델 성능 평가**
 ![KakaoTalk_20220527_170538757](https://user-images.githubusercontent.com/101659578/170662635-93601d23-33ab-45d5-b234-be2d22ff17ed.png)
