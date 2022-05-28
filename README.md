@@ -26,6 +26,16 @@
 ## 🌲Working Enviornment
 * Google Colab
 * Python Version : 3.7.13
+* numpy==1.21.6
+* pandas==1.3.5
+* tqdm==4.64.0
+* capstone==4.0.2
+* pefile==2021.9.3
+* tensorflow==2.8.0
+* keras==2.8.0
+* xgboost==0.90
+* gensim==3.6.0
+* sklearn==1.0.2
 
 ## 🗃️Dataset
 * DikeDataset: https://github.com/iosifache/DikeDataset
