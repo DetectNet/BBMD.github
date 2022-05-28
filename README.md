@@ -94,7 +94,7 @@
 >>> MalwareDetectionFunction(clf, fileName)
 0
 >>> # 악성코드 파일 테스트(1로 출력될 경우 악성)
->>> # 악성코드 파일을 직접 Google Drive 및 GitHub에 올릴 수 없기 때문에 pickle로 먼저 opcodeSequence를 추출하여 해당 파일을 바탕으로 악성코드를 탐지하는 함수를 제작하였다.
+>>> # 악성코드 파일을 직접 Google Drive 및 GitHub에 올릴 수 없기 때문에 pickle로 먼저 opcodeSequence를 추출하여 해당 파일을 바탕으로 악성코드를 탐지하는 함수를 제작하였습니다.
 >>> pickleName = 'MalwareSample.p' 
 >>> MalwareDetectionFunctionUsingPickle(clf, pickleName)
 1
@@ -127,11 +127,55 @@
 >>> MalwareDetectionFunction(clf, fileName)
 0
 >>> # 악성코드 파일 테스트(1로 출력될 경우 악성)
->>> # 악성코드 파일을 직접 Google Drive 및 GitHub에 올릴 수 없기 때문에 pickle로 먼저 opcodeSequence를 추출하여 해당 파일을 바탕으로 악성코드를 탐지하는 함수를 제작하였다.
+>>> # 악성코드 파일을 직접 Google Drive 및 GitHub에 올릴 수 없기 때문에 pickle로 먼저 opcodeSequence를 추출하여 해당 파일을 바탕으로 악성코드를 탐지하는 함수를 제작하였습니다.
 >>> pickleName = 'MalwareSample.p' 
 >>> MalwareDetectionFunctionUsingPickle(clf, pickleName)
 1
 ```
+### BBMD/XGBClassifier_based_on_BPE_Token_word2vecEmbedding/모델 사용법
+* 디렉토리 내부에 있는 test.ipynb 파일을 쥬피터 노트북을 통해 읽으시면 쉽게 이해하실 수 있습니다.
+```python
+>>> # 필요한 패키지인 pefile과 capstone이 설치된 환경에서 작동됩니다.
+>>> # utils.py가 있는 파일로 디렉토리를 이동하시고 사용하여야 합니다.
+>>> # 필요한 패키지 import
+>>> from utils import *
+>>> from xgboost import XGBClassifier
+>>> from gensim.models import Word2Vec
+>>> from gensim.models import KeyedVectors
+>>> # opcodeList가 있는 파일과 BPE Token vocab 파일을 로드를 해줍니다.
+>>> with open('opcodesList.txt', 'rb') as lf:
+>>>     opcodes = pickle.load(lf)
+>>> opcodes2 = []
+>>> for i in range(len(opcodes)):
+>>>    opcodes2.append([opcodes[i]])
+>>> with open('2000vocab.p', 'rb') as file:
+>>>    vocab = pickle.load(file)
+>>> vocab = vocab + opcodes2
+>>> # Trained word2vec model load
+>>> modelPath = 'BPEw2v2000'
+>>> word2vecModel = KeyedVectors.load_word2vec_format(modelPath)
+>>> # word2vec model test
+>>> model_result = word2vecModel.most_similar("addadd")
+>>> print(model_result)
+[('addaddadd', 0.4414026737213135), ('addaddaddadd', 0.3697534203529358), ('decaddaddadd', 0.3347220718860626), ('pushaddaddaddadd', 0.3212829530239105), ('addaddaddaddadd', 0.3178083300590515), ('adcaddadd', 0.31767505407333374), ('pushaddadd', 0.2995673418045044), ('jnpaddadd', 0.2970563769340515), ('pushaddaddadd', 0.29624754190444946), ('xchgaddadd', 0.2945404648780823)]
+>>> # test.ipynb 파일 내부의 get_sentence_mean_vector(morphs) 함수를 구현하셔서 pefile을 word2vec 임베딩 값으로 변경해주는 함수를 만들어주셔야 합니다.(길어서 여기서는 생략합니다.)
+>>> # 학습된 분류 모델 로드
+>>> # 파일명
+>>> filename = 'XGB_BPE2000_Word2vecClassifier.model'
+>>> # 모델 불러오기
+>>> clf = pickle.load(open(filename, 'rb'))
+>>> # test.ipynb 파일 내부에 있는 MalwareDetectionFunction 함수와 MalwareDetectionFunctionUsingPickle 함수를 만들어주세요(길어서 여기서는 생략합니다.)
+>>> # 양성 파일 테스트(0으로 출력될 경우 양성)
+>>> fileName = '3f3fe9ecad7f30fc80cdfb678d7ca27a30d0575a73818746e98be9170d3be348.exe'
+>>> MalwareDetectionFunction(clf, fileName)
+0
+>>> # 악성코드 파일 테스트(1로 출력될 경우 악성)
+>>> # 악성코드 파일을 직접 Google Drive 및 GitHub에 올릴 수 없기 때문에 pickle로 먼저 opcodeSequence를 추출하여 해당 파일을 바탕으로 악성코드를 탐지하는 함수를 제작하였습니다.
+>>> pickleName = 'MalwareSample.p' 
+>>> MalwareDetectionFunctionUsingPickle(clf, pickleName)
+1
+```
+
 ## 🌟 결과
 **LSTM+CNN Model Input Max Length별 모델 성능 평가**
 ![KakaoTalk_20220527_170538757](https://user-images.githubusercontent.com/101659578/170662635-93601d23-33ab-45d5-b234-be2d22ff17ed.png)
