@@ -30,6 +30,11 @@
 ## 🗃️Dataset
 * DikeDataset: https://github.com/iosifache/DikeDataset
 
+## 🗂️각 디렉토리별 설명
+* prev.Models: 기존에 연구된 기법들을 재현한 모델들을 시현해볼 수 있습니다.(opcode Frequency 기반, word2vec 임베딩 기반)
+* BBMD: BPE 토큰을 사용해서 새로 연구된 기법을 바탕으로 제작된 모델을 시현해볼 수 있습니다.(BPE Token word2vec 임베딩 기반, BPE Token Sequence 입력 기반)
+* 각 모델들의 디렉토리에서 ipynb 확장자 파일들을 보시면 모델 구조 및 학습을 어떻게 하였는지를 확인하실 수 있고, test.ipynb 파일을 확인하시면 각 모델을 어떻게 사용하는지 설명을 확인하실 수 있습니다.
+
 ## 📃How to use
 * 사용법은 각 디렉토리에 있는 test.ipynb를 보시면 쉽게 이해하실 수 있습니다.
 * BBMD.github에서 requirements.txt 내 패키지들이 전부 설치되어야 작동됩니다.
@@ -265,15 +270,16 @@ _________________________________________________________________
 ## 🌟 결과
 **LSTM+CNN Model Input Max Length별 모델 성능 평가**
 ![KakaoTalk_20220527_170538757](https://user-images.githubusercontent.com/101659578/170662635-93601d23-33ab-45d5-b234-be2d22ff17ed.png)
+* BPE Token을 2000개 생성하고 vocab을 생성하였을 경우, LSTM+CNN 모델에 돌렸을 때의 그래프입니다.
+* 입력 길이를 1000개 단위로 증가시키면서 정확도를 측정한 결과, 3000이 Max length일 경우 성능이 가장 좋게 나와 해당 길이를 기준으로 정하였습니다.
 
 결과 테이블
 ![3](https://user-images.githubusercontent.com/101659578/170676368-17e29021-25bd-4827-8260-0b2caf81af96.png)
+* 기존 모델(prev.Model)과 성능을 비교한 결과 저희가 제시한 BPE 토큰을 활용한 Sequence를 입력받는 LSTM+CNN 모델이 그와 필적하는 성능을 보이는 것을 보였습니다. 이를 통해 저희는 sequence를 입력받는 BERT와 같은 타 모델을 제작할 수 있는 가능성을 확인하였고, 추후 난독화에 강하도록 pre-train이 된 모델을 직접 설계하고 제작하여 성능을 확인 할 것입니다.
+* 또한 BPE Token을 기존 기법들 중 word2vec 모델과 같이 사용한 기법과 합쳐서 탐지 모델을 제작할 경우, 기존보다 더 뛰어난 성능을 보이는 것을 확인하였습니다. 이를 통해 BPE Token 생성 알고리즘을 활용하는 것이 기존 방식보다 더 좋은 성능을 내는 것을 보였습니다.
 
 
-
-
-`👉 각 모델의 파일 설명은 디렉토리에 있는 read file에 기재하였습니다, 동작 과정은 각각의 ipynb의 text로 설명하였습니다`
-
+`👉 각 모델의 파일 설명은 디렉토리에 있는 read file에 기재하였습니다, 동작 과정은 각각의 ipynb의 로 설명하였습니다`
 
 ## 🔎 추가 진행 계획 및 개선 사항
 * _OPCODE_ 중 _nop_ 가 아무 의미가 없는 버퍼형식으로 작동하는것을 발견하였습니다. _nop_ 를 제거하는 방식으로 성능을 높일 수 있다 판단하여, 프로젝트를 발전시켜볼 계획입니다.
