@@ -30,13 +30,15 @@
 ## 🗃️Dataset
 * DikeDataset: https://github.com/iosifache/DikeDataset
 
-## How to use
+## 📃How to use
 * 사용법은 각 디렉토리에 있는 test.ipynb를 보시면 쉽게 이해하실 수 있습니다.
+* BBMD.github에서 requirements.txt 내 패키지들이 전부 설치되어야 작동됩니다.
 
 ### utils.py 파일 사용법
 * BBMD 안에 있는 utils 디렉토리에 있는 utils.py를 사용하는 방법입니다.
 * utils 디렉토리 내부에 있는 test.ipynb 파일을 쥬피터 노트북을 통해 읽으시면 쉽게 이해하실 수 있습니다.
 ```python
+>>> # 필요한 패키지인 pefile과 capstone이 설치된 환경에서 작동됩니다.
 >>> # utils.py가 있는 파일로 디렉토리를 이동하시고 사용하여야 합니다.
 >>> from utils import *
 >>> # opcodeList가 있는 파일과 BPE Token vocab 파일을 로드를 해줍니다.
@@ -67,6 +69,37 @@
 >>> sampleTokenIdList = TokenIdMapping(vocab, sampleTokens)
 [2110, 1336, 606, 86, 2045, 1837, 709, 1499, 2059, 1851]
 ```
+### prev.Models/XGBClassifier_based_on_opcode_frequency/모델 사용법
+* 디렉토리 내부에 있는 test.ipynb 파일을 쥬피터 노트북을 통해 읽으시면 쉽게 이해하실 수 있습니다.
+'''python
+>>> # 필요한 패키지인 pefile과 capstone이 설치된 환경에서 작동됩니다.
+>>> # utils.py가 있는 파일로 디렉토리를 이동하시고 사용하여야 합니다.
+>>> # 필요한 패키지 import
+>>> from utils import *
+>>> from xgboost import XGBClassifier
+>>> # opcode list 로드(utils 디렉토리 내부에 있는 opcodeList.txt를 로드하시면 됩니다.)
+>>> with open('opcodesList.txt', 'rb') as lf:
+>>>     opcodes = pickle.load(lf)
+>>> opcodeDict = {}
+>>> for i in range(len(opcodes)):
+>>>     opcodeDict.setdefault(opcodes[i], i)
+>>> # 학습된 모델을 로드해줍니다.
+>>> # 파일명
+>>> filename = 'XGBClassifier.model'
+>>> # 모델 불러오기
+>>> clf = pickle.load(open(filename, 'rb'))
+>>> # test.ipynb 파일 내부에 있는 MalwareDetectionFunction 함수와 MalwareDetectionFunctionUsingPickle 함수를 만들어주세요(길어서 여기서는 생략합니다.)
+>>> # 양성 파일 테스트(0으로 출력될 경우 양성)
+>>> fileName = '3f3fe9ecad7f30fc80cdfb678d7ca27a30d0575a73818746e98be9170d3be348.exe'
+>>> MalwareDetectionFunction(clf, fileName)
+0
+>>> # 악성코드 파일 테스트(1로 출력될 경우 악성)
+>>> # 악성코드 파일을 직접 Google Drive 및 GitHub에 올릴 수 없기 때문에 pickle로 먼저 opcodeSequence를 추출하여 해당 파일을 바탕으로 악성코드를 탐지하는 함수를 제작하였다.
+>>> pickleName = 'MalwareSample.p' 
+>>> MalwareDetectionFunctionUsingPickle(clf, pickleName)
+1
+'''
+
 
 ## 🌟 결과
 **LSTM+CNN Model Input Max Length별 모델 성능 평가**
