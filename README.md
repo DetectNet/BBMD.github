@@ -82,6 +82,7 @@
 ['addaddaddadd', 'decmovxor', 'decleaincmov', 'inc', 'movdec', 'cmpinc', 'movincinc', 'testjs', 'incmov', 'dectestje']
 >>> # TokenIdMapping: BPE Token list를 BPE Token Id로 변환
 >>> sampleTokenIdList = TokenIdMapping(vocab, sampleTokens)
+>>> print(sampleTokenIdList[:10])
 [2110, 1336, 606, 86, 2045, 1837, 709, 1499, 2059, 1851]
 ```
 ### prev.Models/XGBClassifier_based_on_opcode_frequency/모델 사용법
