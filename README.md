@@ -176,7 +176,7 @@
 [('addaddadd', 0.4414026737213135), ('addaddaddadd', 0.3697534203529358), ('decaddaddadd', 0.3347220718860626), ('pushaddaddaddadd', 0.3212829530239105), ('addaddaddaddadd', 0.3178083300590515), ('adcaddadd', 0.31767505407333374), ('pushaddadd', 0.2995673418045044), ('jnpaddadd', 0.2970563769340515), ('pushaddaddadd', 0.29624754190444946), ('xchgaddadd', 0.2945404648780823)]
 >>> # test.ipynb 파일 내부의 get_sentence_mean_vector(morphs) 함수를 구현하셔서 pefile을 word2vec 임베딩 값으로 변경해주는 함수를 만들어주셔야 합니다.(길어서 여기서는 생략합니다.)
 >>> # 학습된 분류 모델 로드
->>> # 파일명
+>>> # 모델명
 >>> filename = 'XGB_BPE2000_Word2vecClassifier.model'
 >>> # 모델 불러오기
 >>> clf = pickle.load(open(filename, 'rb'))
